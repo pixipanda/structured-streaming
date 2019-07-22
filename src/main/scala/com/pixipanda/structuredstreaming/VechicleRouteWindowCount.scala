@@ -6,7 +6,7 @@ import org.apache.spark.sql.streaming.OutputMode
 import org.apache.spark.sql.types.{StringType, StructType, TimestampType}
 
 
-object  VechicleTypeWindowCount {
+object  VechicleRouteWindowCount {
 
   def main(args: Array[String]) {
 
@@ -40,13 +40,13 @@ object  VechicleTypeWindowCount {
       .selectExpr("traffic.*")
       .withColumn("eventTime", unix_timestamp('time, "EEE MMM dd HH:mm:ss zzz yyyy").cast(TimestampType))
 
-    val vechicleTypeRouteWindowCount = trafficstream
+    val vechicleRouteWindowCount = trafficstream
       .dropDuplicates("vehicleId")
-      .groupBy(window('eventTime, "1 minute"),  'vehicleType)
+      .groupBy(window('eventTime, "1 minute"),  'routeId)
       .count()
       .orderBy("window")
 
-    val query = vechicleTypeRouteWindowCount.writeStream.format("console").option("truncate", "false").outputMode(OutputMode.Complete())
+    val query = vechicleRouteWindowCount.writeStream.format("console").option("truncate", "false").outputMode(OutputMode.Complete())
 
     query.start().awaitTermination()
   }
