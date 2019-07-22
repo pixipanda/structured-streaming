@@ -1,0 +1,30 @@
+{"vehicleId":"07463b08-9afc-4443-afe2-b0345212788b","vehicleType":"Private Car","routeId":"Route-43","latitude":"-97.1278","longitude":"35.666542","time":"Mon Jul 22 17:20:27 IST 2019","speed":73.0,"fuelLevel":14.0}
+{"vehicleId":"bbe0ec14-dea8-45ae-b3a3-41dbbd27a3ad","vehicleType":"Private Car","routeId":"Route-82","latitude":"-96.46641","longitude":"34.72806","time":"Mon Jul 22 17:20:30 IST 2019","speed":28.0,"fuelLevel":28.0}
+{"vehicleId":"293019fe-5bff-4cac-a2b5-8e5307567722","vehicleType":"Bus","routeId":"Route-82","latitude":"-96.57138","longitude":"34.63729","time":"Mon Jul 22 17:20:31 IST 2019","speed":67.0,"fuelLevel":22.0}
+{"vehicleId":"0319e17c-462d-4ed2-bdc7-656f9bbef85f","vehicleType":"Taxi","routeId":"Route-82","latitude":"-96.30426","longitude":"34.89229","time":"Mon Jul 22 17:20:33 IST 2019","speed":35.0,"fuelLevel":24.0}
+{"vehicleId":"7e9d47a9-964d-4314-8c87-8a2ff88b310a","vehicleType":"Bus","routeId":"Route-43","latitude":"-97.010635","longitude":"35.137676","time":"Mon Jul 22 17:20:34 IST 2019","speed":84.0,"fuelLevel":16.0}
+{"vehicleId":"d3aaa64d-dd9c-4dfd-989e-a4851f2ee5f5","vehicleType":"Large Truck","routeId":"Route-82","latitude":"-96.05397","longitude":"34.85765","time":"Mon Jul 22 17:20:35 IST 2019","speed":26.0,"fuelLevel":17.0}
+{"vehicleId":"3fdf4b33-d81e-41f5-aafb-32930d0e2409","vehicleType":"Large Truck","routeId":"Route-37","latitude":"-95.59073","longitude":"33.461464","time":"Mon Jul 22 17:20:37 IST 2019","speed":41.0,"fuelLevel":28.0}
+{"vehicleId":"6d471996-b34d-4fd9-b818-2a5ba5d31eea","vehicleType":"Large Truck","routeId":"Route-43","latitude":"-97.4665","longitude":"35.61072","time":"Mon Jul 22 17:20:40 IST 2019","speed":42.0,"fuelLevel":16.0}
+
+
+
+
+Next set of events
+
+{"vehicleId":"99fe5b5b-388d-4298-a391-a5b38fd605b4","vehicleType":"Private Car","routeId":"Route-43","latitude":"-97.54135","longitude":"35.165604","time":"Mon Jul 22 17:21:02 IST 2019","speed":96.0,"fuelLevel":30.0}
+{"vehicleId":"7c1e4999-a076-45fe-911a-b6e181fe34f7","vehicleType":"Private Car","routeId":"Route-37","latitude":"-95.95391","longitude":"33.482674","time":"Mon Jul 22 17:21:03 IST 2019","speed":20.0,"fuelLevel":20.0}
+{"vehicleId":"ef2e6b78-0e4e-4321-9681-222262a3c416","vehicleType":"Taxi","routeId":"Route-43","latitude":"-97.38162","longitude":"35.643574","time":"Mon Jul 22 17:21:05 IST 2019","speed":60.0,"fuelLevel":30.0}
+{"vehicleId":"18621913-8706-45df-aedf-aca4dd01cf59","vehicleType":"Small Truck","routeId":"Route-37","latitude":"-95.9931","longitude":"33.784275","time":"Mon Jul 22 17:21:07 IST 2019","speed":60.0,"fuelLevel":19.0}
+{"vehicleId":"496a9cb9-db08-4163-98cf-5aa6b8204f1a","vehicleType":"Large Truck","routeId":"Route-37","latitude":"-95.67954","longitude":"33.29684","time":"Mon Jul 22 17:21:11 IST 2019","speed":63.0,"fuelLevel":18.0}
+{"vehicleId":"ebe5bd04-69a8-45f0-b7bf-f591d16bdb9c","vehicleType":"Large Truck","routeId":"Route-37","latitude":"-95.47595","longitude":"33.48093","time":"Mon Jul 22 17:21:13 IST 2019","speed":24.0,"fuelLevel":22.0}
+{"vehicleId":"ef2e6b75-0e4e-4321-9681-222262a3c416","vehicleType":"Taxi","routeId":"Route-43","latitude":"-97.11899","longitude":"35.141487","time":"Mon Jul 22 17:21:15 IST 2019","speed":60.0,"fuelLevel":30.0}
+{"vehicleId":"26423511-ffb5-49ea-b13d-6b1022b93bb8","vehicleType":"Small Truck","routeId":"Route-37","latitude":"-95.24974","longitude":"33.59786","time":"Mon Jul 22 17:21:58 IST 2019","speed":35.0,"fuelLevel":23.0}
+
+
+
+Wait for 2 mins
+Late Events
+
+{"vehicleId":"18621916-8706-45df-aedf-aca4dd01cf59","vehicleType":"Bus","routeId":"Route-37","latitude":"-95.9931","longitude":"33.784275","time":"Mon Jul 22 17:20:07 IST 2019","speed":60.0,"fuelLevel":19.0}
+{"vehicleId":"eab5f688-b104-4a2e-8bd4-4b5896cf44e3","vehicleType":"Bus","routeId":"Route-82","latitude":"-96.43118","longitude":"34.048748","time":"Mon Jul 22 17:20:10 IST 2019","speed":61.0,"fuelLevel":23.0}
