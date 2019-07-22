@@ -38,13 +38,15 @@ object IoTTrafficTesting {
     .load()
 
 
+
+
     val trafficstream = iotstreamdf.withColumn("traffic", // nested structure with our json
       from_json($"value".cast(StringType), schema))
       .selectExpr("traffic.*", "partition", "offset")
       .withColumn("abc", unix_timestamp('time, "EEE MMM dd HH:mm:ss zzz yyyy").cast(TimestampType))
     //val trafficstream = iotstreamdf.select(from_json(col("value").cast("string"), schema))
 
-    val query = trafficstream.writeStream.format("console").option("truncate", "false").outputMode(OutputMode.Append())
+    val query = iotstreamdf.writeStream.format("console").option("truncate", "false").outputMode(OutputMode.Append())
 
     query.start().awaitTermination()
   }
