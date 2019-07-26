@@ -1,13 +1,10 @@
 package com.pixipanda.structuredstreaming.advstreaming
 
 import org.apache.spark.sql.SparkSession
-import org.apache.spark.sql.functions.{from_json, unix_timestamp}
-import org.apache.spark.sql.streaming.OutputMode
+import org.apache.spark.sql.functions.{expr, from_json, unix_timestamp}
 import org.apache.spark.sql.types.{StringType, StructType, TimestampType}
-import org.apache.spark.sql.functions.expr
 
-
-object StreamStreamJoin {
+object StreamStreamJoinWatermark {
 
 
   def main(args: Array[String]) {
@@ -60,6 +57,9 @@ object StreamStreamJoin {
       .withColumn("impressionTime", unix_timestamp('timestamp, "EEE MMM dd HH:mm:ss zzz yyyy").cast(TimestampType))
       .drop("timestamp")
 
+
+    val adImpressonWithWatermark = adImpressionStream.withWatermark("impressionTime", "10 minutes")
+
     val adClickStream = adClickRawStreamDF.withColumn("adClick", // nested structure with our json
       from_json($"value".cast(StringType), adClickSchema))
       .selectExpr("adClick.*")
@@ -68,12 +68,16 @@ object StreamStreamJoin {
       .drop("timestamp")
 
 
+    val adClickWithWatermark = adClickStream.withWatermark("clickTime", "10 minutes")
+
+
 
     val joinedStream = adImpressionStream.join(
       adClickStream,
       expr("""
       clickAdId = impressionAdId AND
-      clickTime >= impressionTime
+      clickTime >= impressionTime AND
+      clickTime <= impressionTime + interval 5 minutes
       """
       )
     )
