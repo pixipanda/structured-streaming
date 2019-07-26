@@ -61,12 +61,12 @@ object MainNegihborhoodAgg {
      window('endTime, "30 minutes", "10 minutes"), 'stopNbhd)
    .agg(avg("tip"))*/
 
-   StreamingDataFrameWriter.StreamingDataFrameConsoleWriter(sdf, "TipsInConsole").awaitTermination()
+    StreamingDataFrameWriter.StreamingDataFrameConsoleWriter(sdf, "TipsInConsole")
 
-    /*StreamingDataFrameWriter.StreamingDataFrameConsoleWriter(sdfFares, "TaxiFaresConsole").awaitTermination()
-    StreamingDataFrameWriter.StreamingDataFrameConsoleWriter(sdfRides, "TaxiRidesConsole").awaitTermination()*/
+    /*StreamingDataFrameWriter.StreamingDataFrameConsoleWriter(sdfFares, "TaxiFaresConsole")
+    StreamingDataFrameWriter.StreamingDataFrameConsoleWriter(sdfRides, "TaxiRidesConsole")*/
 
+    spark.streams.awaitAnyTermination()
 
-    spark.stop()
   }
 }
