@@ -18,7 +18,7 @@ object StreamStreamJoinWatermark {
     import sparkSession.implicits._
 
 
-    val adImpressionschema = new StructType().add("id", "string")
+    val adImpressionschema = new StructType().add("adId", "string")
       .add("timestamp", "string")
       .add("publisher", "string")
       .add("advertiser", "string")
@@ -28,7 +28,7 @@ object StreamStreamJoinWatermark {
       .add("cookie", "string")
 
 
-    val adClickSchema = new StructType().add("id", "string")
+    val adClickSchema = new StructType().add("adId", "string")
       .add("timestamp", "string")
 
 
@@ -53,7 +53,7 @@ object StreamStreamJoinWatermark {
     val adImpressionStream = adImpressionRawStreamDF.withColumn("adImpression", // nested structure with our json
       from_json($"value".cast(StringType), adImpressionschema))
       .selectExpr("adImpression.*")
-      .withColumnRenamed("id", "impressionAdId")
+      .withColumnRenamed("adId", "impressionAdId")
       .withColumn("impressionTime", unix_timestamp('timestamp, "EEE MMM dd HH:mm:ss zzz yyyy").cast(TimestampType))
       .drop("timestamp")
 
@@ -63,7 +63,7 @@ object StreamStreamJoinWatermark {
     val adClickStream = adClickRawStreamDF.withColumn("adClick", // nested structure with our json
       from_json($"value".cast(StringType), adClickSchema))
       .selectExpr("adClick.*")
-      .withColumnRenamed("id", "clickAdId")
+      .withColumnRenamed("adId", "clickAdId")
       .withColumn("clickTime", unix_timestamp('timestamp, "EEE MMM dd HH:mm:ss zzz yyyy").cast(TimestampType))
       .drop("timestamp")
 
@@ -72,8 +72,8 @@ object StreamStreamJoinWatermark {
 
 
 
-    val joinedStream = adImpressionStream.join(
-      adClickStream,
+    val joinedStream = adImpressonWithWatermark.join(
+      adClickWithWatermark,
       expr("""
       clickAdId = impressionAdId AND
       clickTime >= impressionTime AND
@@ -81,6 +81,7 @@ object StreamStreamJoinWatermark {
       """
       )
     )
+
 
     StreamingDataFrameWriter.StreamingDataFrameConsoleWriter(joinedStream, "Ad_Impression_Click_Console")
 

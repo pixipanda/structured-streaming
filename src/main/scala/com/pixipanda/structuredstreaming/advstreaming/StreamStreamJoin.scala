@@ -21,7 +21,7 @@ object StreamStreamJoin {
     import sparkSession.implicits._
 
 
-    val adImpressionschema = new StructType().add("id", "string")
+    val adImpressionschema = new StructType().add("adId", "string")
       .add("timestamp", "string")
       .add("publisher", "string")
       .add("advertiser", "string")
@@ -31,7 +31,7 @@ object StreamStreamJoin {
       .add("cookie", "string")
 
 
-    val adClickSchema = new StructType().add("id", "string")
+    val adClickSchema = new StructType().add("adId", "string")
       .add("timestamp", "string")
 
 
@@ -56,14 +56,14 @@ object StreamStreamJoin {
     val adImpressionStream = adImpressionRawStreamDF.withColumn("adImpression", // nested structure with our json
       from_json($"value".cast(StringType), adImpressionschema))
       .selectExpr("adImpression.*")
-      .withColumnRenamed("id", "impressionAdId")
+      .withColumnRenamed("adId", "impressionAdId")
       .withColumn("impressionTime", unix_timestamp('timestamp, "EEE MMM dd HH:mm:ss zzz yyyy").cast(TimestampType))
       .drop("timestamp")
 
     val adClickStream = adClickRawStreamDF.withColumn("adClick", // nested structure with our json
       from_json($"value".cast(StringType), adClickSchema))
       .selectExpr("adClick.*")
-      .withColumnRenamed("id", "clickAdId")
+      .withColumnRenamed("adId", "clickAdId")
       .withColumn("clickTime", unix_timestamp('timestamp, "EEE MMM dd HH:mm:ss zzz yyyy").cast(TimestampType))
       .drop("timestamp")
 
@@ -77,6 +77,10 @@ object StreamStreamJoin {
       """
       )
     )
+
+    /*StreamingDataFrameWriter.StreamingDataFrameConsoleWriter(adImpressionStream, "Ad_Impression_Console")
+    StreamingDataFrameWriter.StreamingDataFrameConsoleWriter(adClickStream, "Ad_Click_Console")*/
+
 
     StreamingDataFrameWriter.StreamingDataFrameConsoleWriter(joinedStream, "Ad_Impression_Click_Console")
 
